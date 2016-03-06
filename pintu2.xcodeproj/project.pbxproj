@@ -11,8 +11,6 @@
 		8B5F98331C838C6B001488B9 /* AssetsDataIsInaccessibleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F98321C838C6B001488B9 /* AssetsDataIsInaccessibleViewController.m */; };
 		8B5F98361C83BADA001488B9 /* AcquirePicture.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F98351C83BADA001488B9 /* AcquirePicture.m */; };
 		8B7D328A1C63D72100973732 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7D32891C63D72100973732 /* AppDelegate.swift */; };
-		8B7D328C1C63D72100973732 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7D328B1C63D72100973732 /* FirstViewController.swift */; };
-		8B7D328E1C63D72100973732 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7D328D1C63D72100973732 /* SecondViewController.swift */; };
 		8B7D32911C63D72100973732 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B7D328F1C63D72100973732 /* Main.storyboard */; };
 		8B7D32931C63D72100973732 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B7D32921C63D72100973732 /* Assets.xcassets */; };
 		8B7D32961C63D72100973732 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B7D32941C63D72100973732 /* LaunchScreen.storyboard */; };
@@ -20,11 +18,13 @@
 		8B7D32AC1C63D72100973732 /* pintu2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7D32AB1C63D72100973732 /* pintu2UITests.swift */; };
 		8B98D3261C861F700099E16D /* PreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B98D3251C861F700099E16D /* PreviewCell.m */; };
 		8B98D3291C8780050099E16D /* snippets in Resources */ = {isa = PBXBuildFile; fileRef = 8B98D3281C8780050099E16D /* snippets */; };
-		8B98D32C1C8786D70099E16D /* camera-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B98D32B1C8786D70099E16D /* camera-512.png */; };
-		8B98D3331C8788260099E16D /* cam@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B98D3311C8788260099E16D /* cam@2x.png */; };
-		8B98D3341C8788260099E16D /* cam@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B98D3321C8788260099E16D /* cam@3x.png */; };
 		8BEB31BD1C810F6F009C69A5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEB31BC1C810F6F009C69A5 /* AVFoundation.framework */; };
 		8BEB31D71C828244009C69A5 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEB31D61C828244009C69A5 /* AssetsLibrary.framework */; };
+		8BFE75C01C88F40700B4BD7C /* AcquireCam.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFE75BD1C88F40700B4BD7C /* AcquireCam.m */; };
+		8BFE75C11C88F40700B4BD7C /* AcquireLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFE75BF1C88F40700B4BD7C /* AcquireLib.m */; };
+		8BFE75C71C8C607000B4BD7C /* cam@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BFE75C41C8C607000B4BD7C /* cam@2x.png */; };
+		8BFE75C81C8C607000B4BD7C /* cam@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BFE75C51C8C607000B4BD7C /* cam@3x.png */; };
+		8BFE75C91C8C607000B4BD7C /* camera-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BFE75C61C8C607000B4BD7C /* camera-512.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,8 +53,6 @@
 		8B5F98351C83BADA001488B9 /* AcquirePicture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcquirePicture.m; sourceTree = "<group>"; };
 		8B7D32861C63D72100973732 /* pintu2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pintu2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B7D32891C63D72100973732 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8B7D328B1C63D72100973732 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		8B7D328D1C63D72100973732 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		8B7D32901C63D72100973732 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8B7D32921C63D72100973732 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B7D32951C63D72100973732 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -68,11 +66,15 @@
 		8B98D3241C861F700099E16D /* PreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewCell.h; sourceTree = "<group>"; };
 		8B98D3251C861F700099E16D /* PreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewCell.m; sourceTree = "<group>"; };
 		8B98D3281C8780050099E16D /* snippets */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = snippets; sourceTree = "<group>"; };
-		8B98D32B1C8786D70099E16D /* camera-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-512.png"; sourceTree = "<group>"; };
-		8B98D3311C8788260099E16D /* cam@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cam@2x.png"; sourceTree = "<group>"; };
-		8B98D3321C8788260099E16D /* cam@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cam@3x.png"; sourceTree = "<group>"; };
 		8BEB31BC1C810F6F009C69A5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		8BEB31D61C828244009C69A5 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		8BFE75BC1C88F40700B4BD7C /* AcquireCam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcquireCam.h; sourceTree = "<group>"; };
+		8BFE75BD1C88F40700B4BD7C /* AcquireCam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcquireCam.m; sourceTree = "<group>"; };
+		8BFE75BE1C88F40700B4BD7C /* AcquireLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcquireLib.h; sourceTree = "<group>"; };
+		8BFE75BF1C88F40700B4BD7C /* AcquireLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcquireLib.m; sourceTree = "<group>"; };
+		8BFE75C41C8C607000B4BD7C /* cam@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cam@2x.png"; sourceTree = "<group>"; };
+		8BFE75C51C8C607000B4BD7C /* cam@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cam@3x.png"; sourceTree = "<group>"; };
+		8BFE75C61C8C607000B4BD7C /* camera-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-512.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,10 @@
 				8B5F98351C83BADA001488B9 /* AcquirePicture.m */,
 				8B98D3241C861F700099E16D /* PreviewCell.h */,
 				8B98D3251C861F700099E16D /* PreviewCell.m */,
+				8BFE75BC1C88F40700B4BD7C /* AcquireCam.h */,
+				8BFE75BD1C88F40700B4BD7C /* AcquireCam.m */,
+				8BFE75BE1C88F40700B4BD7C /* AcquireLib.h */,
+				8BFE75BF1C88F40700B4BD7C /* AcquireLib.m */,
 			);
 			path = AVCam;
 			sourceTree = "<group>";
@@ -152,10 +158,9 @@
 			children = (
 				8B98D32A1C8786CE0099E16D /* icon */,
 				8B98D3271C877FD80099E16D /* snippets */,
+				8BFE75C21C8C5F5C00B4BD7C /* Graphics */,
 				8B5F981B1C838C17001488B9 /* AVCam */,
 				8B7D32891C63D72100973732 /* AppDelegate.swift */,
-				8B7D328B1C63D72100973732 /* FirstViewController.swift */,
-				8B7D328D1C63D72100973732 /* SecondViewController.swift */,
 				8B7D328F1C63D72100973732 /* Main.storyboard */,
 				8B7D32921C63D72100973732 /* Assets.xcassets */,
 				8B7D32941C63D72100973732 /* LaunchScreen.storyboard */,
@@ -193,11 +198,26 @@
 		8B98D32A1C8786CE0099E16D /* icon */ = {
 			isa = PBXGroup;
 			children = (
-				8B98D32B1C8786D70099E16D /* camera-512.png */,
-				8B98D3311C8788260099E16D /* cam@2x.png */,
-				8B98D3321C8788260099E16D /* cam@3x.png */,
 			);
 			name = icon;
+			sourceTree = "<group>";
+		};
+		8BFE75C21C8C5F5C00B4BD7C /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				8BFE75C31C8C5F7A00B4BD7C /* icon */,
+			);
+			path = Graphics;
+			sourceTree = "<group>";
+		};
+		8BFE75C31C8C5F7A00B4BD7C /* icon */ = {
+			isa = PBXGroup;
+			children = (
+				8BFE75C41C8C607000B4BD7C /* cam@2x.png */,
+				8BFE75C51C8C607000B4BD7C /* cam@3x.png */,
+				8BFE75C61C8C607000B4BD7C /* camera-512.png */,
+			);
+			path = icon;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,9 +328,9 @@
 				8B7D32931C63D72100973732 /* Assets.xcassets in Resources */,
 				8B98D3291C8780050099E16D /* snippets in Resources */,
 				8B7D32911C63D72100973732 /* Main.storyboard in Resources */,
-				8B98D3331C8788260099E16D /* cam@2x.png in Resources */,
-				8B98D3341C8788260099E16D /* cam@3x.png in Resources */,
-				8B98D32C1C8786D70099E16D /* camera-512.png in Resources */,
+				8BFE75C71C8C607000B4BD7C /* cam@2x.png in Resources */,
+				8BFE75C81C8C607000B4BD7C /* cam@3x.png in Resources */,
+				8BFE75C91C8C607000B4BD7C /* camera-512.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,10 +356,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B5F98361C83BADA001488B9 /* AcquirePicture.m in Sources */,
-				8B7D328E1C63D72100973732 /* SecondViewController.swift in Sources */,
+				8BFE75C01C88F40700B4BD7C /* AcquireCam.m in Sources */,
 				8B7D328A1C63D72100973732 /* AppDelegate.swift in Sources */,
+				8BFE75C11C88F40700B4BD7C /* AcquireLib.m in Sources */,
 				8B98D3261C861F700099E16D /* PreviewCell.m in Sources */,
-				8B7D328C1C63D72100973732 /* FirstViewController.swift in Sources */,
 				8B5F98331C838C6B001488B9 /* AssetsDataIsInaccessibleViewController.m in Sources */,
 				8B5F982B1C838C17001488B9 /* AAPLPreviewView.m in Sources */,
 			);
