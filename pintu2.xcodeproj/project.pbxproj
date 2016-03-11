@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B42E7911C8E40FB00B6EBF5 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B42E7901C8E40FB00B6EBF5 /* FilterViewController.swift */; };
 		8B5F982B1C838C17001488B9 /* AAPLPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F98211C838C17001488B9 /* AAPLPreviewView.m */; };
 		8B5F98331C838C6B001488B9 /* AssetsDataIsInaccessibleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F98321C838C6B001488B9 /* AssetsDataIsInaccessibleViewController.m */; };
 		8B5F98361C83BADA001488B9 /* AcquirePicture.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F98351C83BADA001488B9 /* AcquirePicture.m */; };
@@ -25,6 +26,7 @@
 		8BFE75C71C8C607000B4BD7C /* cam@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BFE75C41C8C607000B4BD7C /* cam@2x.png */; };
 		8BFE75C81C8C607000B4BD7C /* cam@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BFE75C51C8C607000B4BD7C /* cam@3x.png */; };
 		8BFE75C91C8C607000B4BD7C /* camera-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BFE75C61C8C607000B4BD7C /* camera-512.png */; };
+		8BFE75CC1C8C61CA00B4BD7C /* AlbumSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFE75CB1C8C61CA00B4BD7C /* AlbumSelector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B42E7901C8E40FB00B6EBF5 /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		8B5F98201C838C17001488B9 /* AAPLPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLPreviewView.h; sourceTree = "<group>"; };
 		8B5F98211C838C17001488B9 /* AAPLPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLPreviewView.m; sourceTree = "<group>"; };
 		8B5F98311C838C6B001488B9 /* AssetsDataIsInaccessibleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetsDataIsInaccessibleViewController.h; sourceTree = "<group>"; };
@@ -75,6 +78,7 @@
 		8BFE75C41C8C607000B4BD7C /* cam@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cam@2x.png"; sourceTree = "<group>"; };
 		8BFE75C51C8C607000B4BD7C /* cam@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cam@3x.png"; sourceTree = "<group>"; };
 		8BFE75C61C8C607000B4BD7C /* camera-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-512.png"; sourceTree = "<group>"; };
+		8BFE75CB1C8C61CA00B4BD7C /* AlbumSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumSelector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,7 +117,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		8B5F981B1C838C17001488B9 /* AVCam */ = {
+		8B5F981B1C838C17001488B9 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				8B5F98201C838C17001488B9 /* AAPLPreviewView.h */,
@@ -128,7 +132,10 @@
 				8BFE75BD1C88F40700B4BD7C /* AcquireCam.m */,
 				8BFE75BE1C88F40700B4BD7C /* AcquireLib.h */,
 				8BFE75BF1C88F40700B4BD7C /* AcquireLib.m */,
+				8BFE75CB1C8C61CA00B4BD7C /* AlbumSelector.swift */,
+				8B42E7901C8E40FB00B6EBF5 /* FilterViewController.swift */,
 			);
+			name = Classes;
 			path = AVCam;
 			sourceTree = "<group>";
 		};
@@ -159,7 +166,7 @@
 				8B98D32A1C8786CE0099E16D /* icon */,
 				8B98D3271C877FD80099E16D /* snippets */,
 				8BFE75C21C8C5F5C00B4BD7C /* Graphics */,
-				8B5F981B1C838C17001488B9 /* AVCam */,
+				8B5F981B1C838C17001488B9 /* Classes */,
 				8B7D32891C63D72100973732 /* AppDelegate.swift */,
 				8B7D328F1C63D72100973732 /* Main.storyboard */,
 				8B7D32921C63D72100973732 /* Assets.xcassets */,
@@ -358,6 +365,8 @@
 				8B5F98361C83BADA001488B9 /* AcquirePicture.m in Sources */,
 				8BFE75C01C88F40700B4BD7C /* AcquireCam.m in Sources */,
 				8B7D328A1C63D72100973732 /* AppDelegate.swift in Sources */,
+				8B42E7911C8E40FB00B6EBF5 /* FilterViewController.swift in Sources */,
+				8BFE75CC1C8C61CA00B4BD7C /* AlbumSelector.swift in Sources */,
 				8BFE75C11C88F40700B4BD7C /* AcquireLib.m in Sources */,
 				8B98D3261C861F700099E16D /* PreviewCell.m in Sources */,
 				8B5F98331C838C6B001488B9 /* AssetsDataIsInaccessibleViewController.m in Sources */,

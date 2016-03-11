@@ -419,18 +419,34 @@
         <!--Album Selector-->
         <scene sceneID="qON-0W-aw0">
             <objects>
-                <tableViewController id="GjF-Dt-eFV" userLabel="Album Selector" sceneMemberID="viewController">
+                <tableViewController id="GjF-Dt-eFV" userLabel="Album Selector" customClass="AlbumSelector" customModule="pintu2" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="J9N-bt-0jZ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Se7-iJ-gHA">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="albumCell" textLabel="x5h-nU-whZ" detailTextLabel="0cF-ty-iPP" style="IBUITableViewCellStyleSubtitle" id="Se7-iJ-gHA">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Se7-iJ-gHA" id="3R6-rP-19B">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="albumCell" tableViewCell="Se7-iJ-gHA" id="3R6-rP-19B">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="x5h-nU-whZ">
+                                            <rect key="frame" x="15" y="6" width="31.5" height="19.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0cF-ty-iPP">
+                                            <rect key="frame" x="15" y="25.5" width="40.5" height="13.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -439,11 +455,11 @@
                             <outlet property="delegate" destination="GjF-Dt-eFV" id="1Vr-kN-cDH"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="IHa-aK-dvf"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="IHa-aK-dvf" userLabel="Album Selector"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QxV-wy-ccc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2486" y="483"/>
+            <point key="canvasLocation" x="3300" y="509"/>
         </scene>
         <!--Roll Navigator-->
         <scene sceneID="2KH-2q-e5I">
@@ -564,11 +580,16 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <tabBarItem key="tabBarItem" title="Roll" image="first" id="S2M-02-ToL"/>
                     <navigationItem key="navigationItem" title="Photo Library" id="Z7J-fl-KAg">
-                        <barButtonItem key="rightBarButtonItem" title="Next →" id="dS7-3N-CGi">
+                        <barButtonItem key="leftBarButtonItem" title="Albums" id="tgy-Ie-XDm" userLabel="Albums">
                             <connections>
-                                <segue destination="GjF-Dt-eFV" kind="popoverPresentation" identifier="albumSelectorSegue" popoverAnchorBarButtonItem="dS7-3N-CGi" id="0s3-pm-uvK">
+                                <segue destination="x9N-Ij-Par" kind="popoverPresentation" identifier="albumSelectorSegue" popoverAnchorBarButtonItem="tgy-Ie-XDm" id="TOm-GN-1dR">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Next →" id="dS7-3N-CGi">
+                            <connections>
+                                <segue destination="2fN-tC-hTd" kind="presentation" identifier="filterSegue" id="RMp-26-0FD"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -581,13 +602,89 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d4f-CM-4PZ" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="kI4-QV-3YH">
-                    <connections>
-                        <action selector="focusAndExposeTap:" destination="BRU-1k-Kw7" id="MMk-7b-CYd"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1682" y="483"/>
+            <point key="canvasLocation" x="1718" y="483"/>
+        </scene>
+        <!--Filter-->
+        <scene sceneID="mhG-Yk-pIE">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="wH2-hk-UoZ" userLabel="Filter" customClass="FilterViewController" customModule="pintu2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DCH-NX-xIW"/>
+                        <viewControllerLayoutGuide type="bottom" id="pLA-zg-wMy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Iym-IM-QPj">
+                        <rect key="frame" x="0.0" y="64" width="320" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="5" maximumZoomScale="5" translatesAutoresizingMaskIntoConstraints="NO" id="tNy-TS-cDA">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                <color key="backgroundColor" red="0.74117647060000003" green="0.81960784310000001" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="tNy-TS-cDA" secondAttribute="height" multiplier="1:1" id="cXD-eF-gO6"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="wH2-hk-UoZ" id="zD4-qr-efo"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tNy-TS-cDA" firstAttribute="leading" secondItem="Iym-IM-QPj" secondAttribute="leading" id="Btb-Eg-P7a"/>
+                            <constraint firstItem="tNy-TS-cDA" firstAttribute="trailing" secondItem="Iym-IM-QPj" secondAttribute="trailing" id="Erl-3b-RuP"/>
+                            <constraint firstItem="tNy-TS-cDA" firstAttribute="top" secondItem="DCH-NX-xIW" secondAttribute="bottom" id="fAC-ET-6Hk"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="kOg-Ov-fuz">
+                        <barButtonItem key="leftBarButtonItem" title="← Back" id="aEl-Zi-VvU" userLabel="← Back"/>
+                    </navigationItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="600"/>
+                    <connections>
+                        <outlet property="backButton" destination="aEl-Zi-VvU" id="Iky-fp-19e"/>
+                        <outlet property="scrollView" destination="tNy-TS-cDA" id="QNd-U7-6fg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DBt-d6-0gn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3300" y="-298"/>
+        </scene>
+        <!--Album Selector Nav-->
+        <scene sceneID="3dG-jO-U3c">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="x9N-Ij-Par" userLabel="Album Selector Nav" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="C2E-2u-5c7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="GjF-Dt-eFV" kind="relationship" relationship="rootViewController" id="qis-rM-vnR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wki-Q2-GEM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2488" y="509"/>
+        </scene>
+        <!--Filter Nav-->
+        <scene sceneID="Rsh-5N-LRE">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2fN-tC-hTd" userLabel="Filter Nav" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uTz-vr-X4h">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="wH2-hk-UoZ" kind="relationship" relationship="rootViewController" id="2gr-45-tH2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hgl-rc-s1b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2488" y="-298"/>
         </scene>
     </scenes>
     <resources>

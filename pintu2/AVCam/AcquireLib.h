@@ -8,7 +8,7 @@
 
 @import UIKit;
 
-@interface AcquireLib : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface AcquireLib : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIPopoverPresentationControllerDelegate>
 
 @property (nonatomic, retain) IBOutlet UICollectionView *collectionView;
 
