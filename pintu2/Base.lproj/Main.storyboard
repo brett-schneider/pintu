@@ -7,10 +7,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                <tabBarController id="49e-Tb-3d3" customClass="MainTabBarController" customModule="pintu2" customModuleProvider="target" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
@@ -300,11 +300,10 @@
                                             <action selector="resumeInterruptedSession:" destination="6Gb-H0-qcQ" eventType="touchUpInside" id="6FI-fx-8B6"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ckk-vJ-vAa" userLabel="Record">
-                                        <rect key="frame" x="180" y="600" width="80" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ckk-vJ-vAa" userLabel="Record">
+                                        <rect key="frame" x="236" y="566" width="64" height="64"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Record">
+                                        <state key="normal" image="movie2.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -316,15 +315,10 @@
                                             <action selector="toggleMovieRecording:" destination="6Gb-H0-qcQ" eventType="touchUpInside" id="wL0-tV-wk2"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oxW-nE-CVQ" userLabel="Still">
-                                        <rect key="frame" x="280" y="600" width="80" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oxW-nE-CVQ">
+                                        <rect key="frame" x="340" y="566" width="64" height="64"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="80" id="3uc-tR-LMU"/>
-                                            <constraint firstAttribute="height" constant="30" id="guj-UI-skn"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Still">
+                                        <state key="normal" image="photo.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -336,11 +330,14 @@
                                             <action selector="snapStillImage:" destination="6Gb-H0-qcQ" eventType="touchUpInside" id="sz4-Fo-b90"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUi-Mx-FXN" userLabel="Camera">
-                                        <rect key="frame" x="380" y="600" width="80" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUi-Mx-FXN">
+                                        <rect key="frame" x="588" y="20" width="32" height="32"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Camera">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="32" id="KyJ-7w-DPe"/>
+                                            <constraint firstAttribute="height" constant="32" id="qOQ-QZ-Xfm"/>
+                                        </constraints>
+                                        <state key="normal" image="flipcam.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -356,41 +353,27 @@
                                 <color key="backgroundColor" red="1" green="0.40242569929999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="oxW-nE-CVQ" secondAttribute="bottom" constant="10" id="A8Y-1i-qRg"/>
-                                    <constraint firstItem="hUi-Mx-FXN" firstAttribute="width" secondItem="ckk-vJ-vAa" secondAttribute="width" id="CBA-di-BwM"/>
-                                    <constraint firstItem="hUi-Mx-FXN" firstAttribute="top" secondItem="ckk-vJ-vAa" secondAttribute="top" id="JVm-rV-lVz"/>
                                     <constraint firstItem="ZdA-af-HFG" firstAttribute="centerX" secondItem="Axm-dx-aka" secondAttribute="centerX" id="TLI-LV-8V2"/>
-                                    <constraint firstItem="oxW-nE-CVQ" firstAttribute="width" secondItem="ckk-vJ-vAa" secondAttribute="width" id="YGe-HU-xZW"/>
-                                    <constraint firstItem="hUi-Mx-FXN" firstAttribute="leading" secondItem="oxW-nE-CVQ" secondAttribute="trailing" constant="20" id="Zdx-nf-QJ0"/>
-                                    <constraint firstItem="oxW-nE-CVQ" firstAttribute="height" secondItem="ckk-vJ-vAa" secondAttribute="height" id="Znq-nh-mfP"/>
-                                    <constraint firstItem="oxW-nE-CVQ" firstAttribute="top" secondItem="ckk-vJ-vAa" secondAttribute="top" id="bTH-DB-x0k"/>
-                                    <constraint firstItem="hUi-Mx-FXN" firstAttribute="height" secondItem="ckk-vJ-vAa" secondAttribute="height" id="cHX-k5-s9i"/>
+                                    <constraint firstItem="oxW-nE-CVQ" firstAttribute="bottom" secondItem="Axm-dx-aka" secondAttribute="bottom" constant="-10" id="UCZ-cd-zyv"/>
+                                    <constraint firstItem="hUi-Mx-FXN" firstAttribute="top" secondItem="Axm-dx-aka" secondAttribute="top" constant="20" id="USd-m4-wNs"/>
+                                    <constraint firstItem="ckk-vJ-vAa" firstAttribute="centerX" secondItem="Axm-dx-aka" secondAttribute="centerX" constant="-52" id="UzG-yD-8l3"/>
+                                    <constraint firstItem="hUi-Mx-FXN" firstAttribute="trailing" secondItem="Axm-dx-aka" secondAttribute="trailing" constant="-20" id="Wgj-aK-8qZ"/>
                                     <constraint firstItem="ckO-4h-3dc" firstAttribute="centerX" secondItem="Axm-dx-aka" secondAttribute="centerX" id="eAX-mV-bCI"/>
                                     <constraint firstAttribute="width" secondItem="Axm-dx-aka" secondAttribute="height" multiplier="1:1" id="gST-we-Jps"/>
                                     <constraint firstItem="ZdA-af-HFG" firstAttribute="centerY" secondItem="Axm-dx-aka" secondAttribute="centerY" id="nwb-rz-aNf"/>
                                     <constraint firstItem="ckO-4h-3dc" firstAttribute="centerY" secondItem="Axm-dx-aka" secondAttribute="centerY" id="sBc-Oc-77H"/>
-                                    <constraint firstItem="oxW-nE-CVQ" firstAttribute="leading" secondItem="ckk-vJ-vAa" secondAttribute="trailing" constant="20" id="tVg-pc-DqW"/>
-                                    <constraint firstItem="oxW-nE-CVQ" firstAttribute="centerX" secondItem="Axm-dx-aka" secondAttribute="centerX" id="yKj-KD-QYA"/>
+                                    <constraint firstItem="ckk-vJ-vAa" firstAttribute="bottom" secondItem="Axm-dx-aka" secondAttribute="bottom" constant="-10" id="wrV-Am-ZJT"/>
+                                    <constraint firstItem="oxW-nE-CVQ" firstAttribute="centerX" secondItem="Axm-dx-aka" secondAttribute="centerX" constant="52" id="yKj-KD-QYA"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="ns1-vo-aKN" appends="YES" id="0gs-a8-nMu"/>
                                 </connections>
                             </view>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XnC-9m-kso">
-                                <rect key="frame" x="0.0" y="0.0" width="640" height="640"/>
-                                <color key="backgroundColor" red="0.31352796049999998" green="0.32030868499999998" blue="0.54266263869999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="XnC-9m-kso" secondAttribute="height" multiplier="1:1" id="WVf-qP-FAe"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Axm-dx-aka" firstAttribute="trailing" secondItem="M6t-60-eyX" secondAttribute="trailingMargin" constant="20" id="0tb-Yp-u3k"/>
                             <constraint firstItem="Axm-dx-aka" firstAttribute="leading" secondItem="M6t-60-eyX" secondAttribute="leadingMargin" constant="-20" id="DcJ-fq-mcX"/>
                             <constraint firstItem="Axm-dx-aka" firstAttribute="top" secondItem="M6t-60-eyX" secondAttribute="topMargin" id="PbP-r7-4A5"/>
-                            <constraint firstItem="XnC-9m-kso" firstAttribute="trailing" secondItem="M6t-60-eyX" secondAttribute="trailingMargin" constant="20" id="eZP-cF-bw0"/>
-                            <constraint firstItem="XnC-9m-kso" firstAttribute="top" secondItem="M6t-60-eyX" secondAttribute="topMargin" id="lLX-TA-5CK"/>
-                            <constraint firstItem="XnC-9m-kso" firstAttribute="leading" secondItem="M6t-60-eyX" secondAttribute="leadingMargin" constant="-20" id="qoZ-qE-V1d"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
@@ -398,7 +381,6 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="640" height="1136"/>
                     <connections>
-                        <outlet property="bigImageView" destination="XnC-9m-kso" id="mdd-JQ-vbH"/>
                         <outlet property="cameraButton" destination="hUi-Mx-FXN" id="p8D-Jt-Jpt"/>
                         <outlet property="cameraUnavailableLabel" destination="ZdA-af-HFG" id="of9-P8-gpw"/>
                         <outlet property="previewView" destination="Axm-dx-aka" id="DxY-Xx-GZy"/>
@@ -465,7 +447,7 @@
         <scene sceneID="2KH-2q-e5I">
             <objects>
                 <navigationController title="Roll" id="Mnw-iQ-H7A" userLabel="Roll Navigator" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="ONX-rZ-HtT"/>
+                    <tabBarItem key="tabBarItem" title="Delete me" image="first" id="ONX-rZ-HtT" userLabel="Roll"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pYp-7p-fz6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -578,7 +560,7 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <tabBarItem key="tabBarItem" title="Roll" image="first" id="S2M-02-ToL"/>
+                    <tabBarItem key="tabBarItem" title="Roll" image="first" id="S2M-02-ToL" userLabel="NAME"/>
                     <navigationItem key="navigationItem" title="Photo Library" id="Z7J-fl-KAg">
                         <barButtonItem key="leftBarButtonItem" title="Albums" id="tgy-Ie-XDm" userLabel="Albums">
                             <connections>
@@ -690,5 +672,8 @@
     <resources>
         <image name="cam.png" width="32" height="32"/>
         <image name="first" width="30" height="30"/>
+        <image name="flipcam.png" width="32" height="32"/>
+        <image name="movie2.png" width="64" height="64"/>
+        <image name="photo.png" width="64" height="64"/>
     </resources>
 </document>

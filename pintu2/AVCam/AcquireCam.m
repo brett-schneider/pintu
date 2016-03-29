@@ -635,7 +635,9 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
     // Enable the Record button to let the user stop the recording.
     dispatch_async( dispatch_get_main_queue(), ^{
         self.recordButton.enabled = YES;
-        [self.recordButton setTitle:NSLocalizedString( @"Stop", @"Recording button stop title") forState:UIControlStateNormal];
+        UIImage* imgbtn = [UIImage imageNamed:@"stop.png"];
+        [self.recordButton setImage:imgbtn forState:UIControlStateNormal];
+        // [self.recordButton setTitle:NSLocalizedString( @"Stop", @"Recording button stop title") forState:UIControlStateNormal];
     });
 }
 
@@ -699,7 +701,9 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
         // Only enable the ability to change camera if the device has more than one camera.
         self.cameraButton.enabled = ( [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo].count > 1 );
         self.recordButton.enabled = YES;
-        [self.recordButton setTitle:NSLocalizedString( @"Record", @"Recording button record title" ) forState:UIControlStateNormal];
+        UIImage* imgbtn = [UIImage imageNamed:@"movie2.png"];
+        [self.recordButton setImage:imgbtn forState:UIControlStateNormal];
+        // [self.recordButton setTitle:NSLocalizedString( @"Record", @"Recording button record title" ) forState:UIControlStateNormal];
     });
 }
 

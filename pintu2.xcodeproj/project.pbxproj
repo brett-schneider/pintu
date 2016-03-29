@@ -25,8 +25,16 @@
 		8BFE75C11C88F40700B4BD7C /* AcquireLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFE75BF1C88F40700B4BD7C /* AcquireLib.m */; };
 		8BFE75C71C8C607000B4BD7C /* cam@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BFE75C41C8C607000B4BD7C /* cam@2x.png */; };
 		8BFE75C81C8C607000B4BD7C /* cam@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BFE75C51C8C607000B4BD7C /* cam@3x.png */; };
-		8BFE75C91C8C607000B4BD7C /* camera-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BFE75C61C8C607000B4BD7C /* camera-512.png */; };
 		8BFE75CC1C8C61CA00B4BD7C /* AlbumSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFE75CB1C8C61CA00B4BD7C /* AlbumSelector.swift */; };
+		8BFE96841CAADC3900156CAB /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFE96831CAADC3900156CAB /* MainTabBarController.swift */; };
+		8BFE96961CAB17E300156CAB /* flipcam@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BFE96931CAB17E300156CAB /* flipcam@2x.png */; };
+		8BFE96971CAB17E300156CAB /* flipcam@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BFE96941CAB17E300156CAB /* flipcam@3x.png */; };
+		8BFE969E1CAB251A00156CAB /* movie2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BFE969C1CAB251A00156CAB /* movie2@2x.png */; };
+		8BFE969F1CAB251A00156CAB /* movie2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BFE969D1CAB251A00156CAB /* movie2@3x.png */; };
+		8BFE96A21CAB292B00156CAB /* photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BFE96A01CAB292B00156CAB /* photo@2x.png */; };
+		8BFE96A31CAB292B00156CAB /* photo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BFE96A11CAB292B00156CAB /* photo@3x.png */; };
+		8BFE96A61CAB381600156CAB /* stop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BFE96A41CAB381600156CAB /* stop@2x.png */; };
+		8BFE96A71CAB381600156CAB /* stop@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BFE96A51CAB381600156CAB /* stop@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,8 +85,16 @@
 		8BFE75BF1C88F40700B4BD7C /* AcquireLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcquireLib.m; sourceTree = "<group>"; };
 		8BFE75C41C8C607000B4BD7C /* cam@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cam@2x.png"; sourceTree = "<group>"; };
 		8BFE75C51C8C607000B4BD7C /* cam@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cam@3x.png"; sourceTree = "<group>"; };
-		8BFE75C61C8C607000B4BD7C /* camera-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-512.png"; sourceTree = "<group>"; };
 		8BFE75CB1C8C61CA00B4BD7C /* AlbumSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumSelector.swift; sourceTree = "<group>"; };
+		8BFE96831CAADC3900156CAB /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		8BFE96931CAB17E300156CAB /* flipcam@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flipcam@2x.png"; sourceTree = "<group>"; };
+		8BFE96941CAB17E300156CAB /* flipcam@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flipcam@3x.png"; sourceTree = "<group>"; };
+		8BFE969C1CAB251A00156CAB /* movie2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "movie2@2x.png"; sourceTree = "<group>"; };
+		8BFE969D1CAB251A00156CAB /* movie2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "movie2@3x.png"; sourceTree = "<group>"; };
+		8BFE96A01CAB292B00156CAB /* photo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo@2x.png"; sourceTree = "<group>"; };
+		8BFE96A11CAB292B00156CAB /* photo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo@3x.png"; sourceTree = "<group>"; };
+		8BFE96A41CAB381600156CAB /* stop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stop@2x.png"; sourceTree = "<group>"; };
+		8BFE96A51CAB381600156CAB /* stop@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stop@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +150,7 @@
 				8BFE75BF1C88F40700B4BD7C /* AcquireLib.m */,
 				8BFE75CB1C8C61CA00B4BD7C /* AlbumSelector.swift */,
 				8B42E7901C8E40FB00B6EBF5 /* FilterViewController.swift */,
+				8BFE96831CAADC3900156CAB /* MainTabBarController.swift */,
 			);
 			name = Classes;
 			path = AVCam;
@@ -163,7 +180,6 @@
 		8B7D32881C63D72100973732 /* pintu2 */ = {
 			isa = PBXGroup;
 			children = (
-				8B98D32A1C8786CE0099E16D /* icon */,
 				8B98D3271C877FD80099E16D /* snippets */,
 				8BFE75C21C8C5F5C00B4BD7C /* Graphics */,
 				8B5F981B1C838C17001488B9 /* Classes */,
@@ -202,13 +218,6 @@
 			name = snippets;
 			sourceTree = "<group>";
 		};
-		8B98D32A1C8786CE0099E16D /* icon */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = icon;
-			sourceTree = "<group>";
-		};
 		8BFE75C21C8C5F5C00B4BD7C /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,7 +231,14 @@
 			children = (
 				8BFE75C41C8C607000B4BD7C /* cam@2x.png */,
 				8BFE75C51C8C607000B4BD7C /* cam@3x.png */,
-				8BFE75C61C8C607000B4BD7C /* camera-512.png */,
+				8BFE96931CAB17E300156CAB /* flipcam@2x.png */,
+				8BFE96941CAB17E300156CAB /* flipcam@3x.png */,
+				8BFE969C1CAB251A00156CAB /* movie2@2x.png */,
+				8BFE969D1CAB251A00156CAB /* movie2@3x.png */,
+				8BFE96A41CAB381600156CAB /* stop@2x.png */,
+				8BFE96A51CAB381600156CAB /* stop@3x.png */,
+				8BFE96A01CAB292B00156CAB /* photo@2x.png */,
+				8BFE96A11CAB292B00156CAB /* photo@3x.png */,
 			);
 			path = icon;
 			sourceTree = "<group>";
@@ -331,13 +347,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BFE96A31CAB292B00156CAB /* photo@3x.png in Resources */,
 				8B7D32961C63D72100973732 /* LaunchScreen.storyboard in Resources */,
+				8BFE969F1CAB251A00156CAB /* movie2@3x.png in Resources */,
+				8BFE96961CAB17E300156CAB /* flipcam@2x.png in Resources */,
 				8B7D32931C63D72100973732 /* Assets.xcassets in Resources */,
+				8BFE96971CAB17E300156CAB /* flipcam@3x.png in Resources */,
 				8B98D3291C8780050099E16D /* snippets in Resources */,
+				8BFE96A71CAB381600156CAB /* stop@3x.png in Resources */,
 				8B7D32911C63D72100973732 /* Main.storyboard in Resources */,
 				8BFE75C71C8C607000B4BD7C /* cam@2x.png in Resources */,
+				8BFE96A61CAB381600156CAB /* stop@2x.png in Resources */,
 				8BFE75C81C8C607000B4BD7C /* cam@3x.png in Resources */,
-				8BFE75C91C8C607000B4BD7C /* camera-512.png in Resources */,
+				8BFE969E1CAB251A00156CAB /* movie2@2x.png in Resources */,
+				8BFE96A21CAB292B00156CAB /* photo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +387,7 @@
 			files = (
 				8B5F98361C83BADA001488B9 /* AcquirePicture.m in Sources */,
 				8BFE75C01C88F40700B4BD7C /* AcquireCam.m in Sources */,
+				8BFE96841CAADC3900156CAB /* MainTabBarController.swift in Sources */,
 				8B7D328A1C63D72100973732 /* AppDelegate.swift in Sources */,
 				8B42E7911C8E40FB00B6EBF5 /* FilterViewController.swift in Sources */,
 				8BFE75CC1C8C61CA00B4BD7C /* AlbumSelector.swift in Sources */,
@@ -515,7 +539,7 @@
 				INFOPLIST_FILE = pintu2/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = net.pkboo.pintu2;
+				PRODUCT_BUNDLE_IDENTIFIER = de.cbret.pintu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -527,7 +551,7 @@
 				INFOPLIST_FILE = pintu2/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = net.pkboo.pintu2;
+				PRODUCT_BUNDLE_IDENTIFIER = de.cbret.pintu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
