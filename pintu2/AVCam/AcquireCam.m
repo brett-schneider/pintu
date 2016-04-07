@@ -14,9 +14,13 @@
 #import "AAPLPreviewView.h"
 #import "AssetsDataIsInaccessibleViewController.h"
 #import "PreviewCell.h"
+#import "pintu2-Swift.h"
 
 static void * CapturingStillImageContext = &CapturingStillImageContext;
 static void * SessionRunningContext = &SessionRunningContext;
+
+static NSString* filterSegue = @"camFilterSegue";
+static NSString* filmFilterSegue = @"filmFilterSegue";
 
 typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
     AVCamSetupResultSuccess,
@@ -46,7 +50,8 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 @property (nonatomic, getter=isSessionRunning) BOOL sessionRunning;
 @property (nonatomic) UIBackgroundTaskIdentifier backgroundRecordingID;
 
-@property (weak, nonatomic) IBOutlet UIImageView *bigImageView;
+@property (weak, nonatomic) NSData *imageData;
+@property (weak, nonatomic) NSURL *filmURL;
 
 @end
 
@@ -571,7 +576,7 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
         [self.stillImageOutput captureStillImageAsynchronouslyFromConnection:connection completionHandler:^( CMSampleBufferRef imageDataSampleBuffer, NSError *error ) {
             if ( imageDataSampleBuffer ) {
                 // The sample buffer is not retained. Create image data before saving the still image to the photo library asynchronously.
-                NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
+                self.imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
                 [PHPhotoLibrary requestAuthorization:^( PHAuthorizationStatus status ) {
                     if ( status == PHAuthorizationStatusAuthorized ) {
                         // To preserve the metadata, we create an asset from the JPEG NSData representation.
@@ -580,7 +585,7 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
                         // In iOS 8, we save the image to a temporary file and use +[PHAssetChangeRequest creationRequestForAssetFromImageAtFileURL:].
                         if ( [PHAssetCreationRequest class] ) {
                             [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-                                [[PHAssetCreationRequest creationRequestForAsset] addResourceWithType:PHAssetResourceTypePhoto data:imageData options:nil];
+                                [[PHAssetCreationRequest creationRequestForAsset] addResourceWithType:PHAssetResourceTypePhoto data:self.imageData options:nil];
                             } completionHandler:^( BOOL success, NSError *error ) {
                                 if ( ! success ) {
                                     NSLog( @"Error occurred while saving image to photo library: %@", error );
@@ -594,7 +599,7 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
                             
                             [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
                                 NSError *error = nil;
-                                [imageData writeToURL:temporaryFileURL options:NSDataWritingAtomic error:&error];
+                                [self.imageData writeToURL:temporaryFileURL options:NSDataWritingAtomic error:&error];
                                 if ( error ) {
                                     NSLog( @"Error occured while writing image data to a temporary file: %@", error );
                                 }
@@ -613,6 +618,7 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
                         }
                     }
                 }];
+                [self performSegueWithIdentifier:filterSegue sender:nil];
             }
             else {
                 NSLog( @"Could not capture still image: %@", error );
@@ -691,6 +697,8 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
                 cleanup();
             }
         }];
+        self.filmURL = outputFileURL;
+        [self performSegueWithIdentifier:filmFilterSegue sender:nil];
     }
     else {
         cleanup();
@@ -763,6 +771,25 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
     }
     
     return captureDevice;
+}
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:filterSegue]) {
+        UINavigationController *nc = [segue destinationViewController];
+        UIBarButtonItem *bbi = [[UIBarButtonItem alloc] initWithTitle:@"← Retake" style:UIBarButtonItemStyleDone target:self action:@selector(dismiss)];
+        nc.topViewController.navigationItem.leftBarButtonItem = bbi;
+        
+        FilterViewController *fil = (FilterViewController*)[nc topViewController];
+        fil.image = [UIImage imageWithData:self.imageData];
+    } else if ([[segue identifier] isEqualToString:filmFilterSegue]) {
+        // TODO
+    }
+}
+
+- (void)dismiss {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"dismiss");
 }
 
 @end

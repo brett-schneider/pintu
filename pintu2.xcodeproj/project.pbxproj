@@ -10,7 +10,6 @@
 		8B42E7911C8E40FB00B6EBF5 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B42E7901C8E40FB00B6EBF5 /* FilterViewController.swift */; };
 		8B5F982B1C838C17001488B9 /* AAPLPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F98211C838C17001488B9 /* AAPLPreviewView.m */; };
 		8B5F98331C838C6B001488B9 /* AssetsDataIsInaccessibleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F98321C838C6B001488B9 /* AssetsDataIsInaccessibleViewController.m */; };
-		8B5F98361C83BADA001488B9 /* AcquirePicture.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F98351C83BADA001488B9 /* AcquirePicture.m */; };
 		8B7D328A1C63D72100973732 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7D32891C63D72100973732 /* AppDelegate.swift */; };
 		8B7D32911C63D72100973732 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B7D328F1C63D72100973732 /* Main.storyboard */; };
 		8B7D32931C63D72100973732 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B7D32921C63D72100973732 /* Assets.xcassets */; };
@@ -60,8 +59,6 @@
 		8B5F98211C838C17001488B9 /* AAPLPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLPreviewView.m; sourceTree = "<group>"; };
 		8B5F98311C838C6B001488B9 /* AssetsDataIsInaccessibleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetsDataIsInaccessibleViewController.h; sourceTree = "<group>"; };
 		8B5F98321C838C6B001488B9 /* AssetsDataIsInaccessibleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetsDataIsInaccessibleViewController.m; sourceTree = "<group>"; };
-		8B5F98341C83BADA001488B9 /* AcquirePicture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcquirePicture.h; sourceTree = "<group>"; };
-		8B5F98351C83BADA001488B9 /* AcquirePicture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcquirePicture.m; sourceTree = "<group>"; };
 		8B7D32861C63D72100973732 /* pintu2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pintu2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B7D32891C63D72100973732 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B7D32901C63D72100973732 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -140,8 +137,6 @@
 				8B5F98211C838C17001488B9 /* AAPLPreviewView.m */,
 				8B5F98311C838C6B001488B9 /* AssetsDataIsInaccessibleViewController.h */,
 				8B5F98321C838C6B001488B9 /* AssetsDataIsInaccessibleViewController.m */,
-				8B5F98341C83BADA001488B9 /* AcquirePicture.h */,
-				8B5F98351C83BADA001488B9 /* AcquirePicture.m */,
 				8B98D3241C861F700099E16D /* PreviewCell.h */,
 				8B98D3251C861F700099E16D /* PreviewCell.m */,
 				8BFE75BC1C88F40700B4BD7C /* AcquireCam.h */,
@@ -385,7 +380,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B5F98361C83BADA001488B9 /* AcquirePicture.m in Sources */,
 				8BFE75C01C88F40700B4BD7C /* AcquireCam.m in Sources */,
 				8BFE96841CAADC3900156CAB /* MainTabBarController.swift in Sources */,
 				8B7D328A1C63D72100973732 /* AppDelegate.swift in Sources */,

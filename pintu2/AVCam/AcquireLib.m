@@ -18,7 +18,7 @@ static void * CapturingStillImageContext = &CapturingStillImageContext;
 static void * SessionRunningContext = &SessionRunningContext;
 
 static NSString* albumSelectorSegue = @"albumSelectorSegue";
-static NSString* filterSegue = @"filterSegue";
+static NSString* filterSegue = @"camFilterSegue";
 
 typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
     AVCamSetupResultSuccess,
