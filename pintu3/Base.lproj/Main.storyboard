@@ -7,10 +7,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Main Tab Bar Controller-->
+        <!--Root-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" customClass="MainTabBarController" customModule="pintu3" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="49e-Tb-3d3" userLabel="Root" customClass="MainTabBarController" customModule="pintu3" customModuleProvider="target" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
@@ -783,7 +783,7 @@
         <scene sceneID="vTx-tX-6ZS">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Z4v-p4-9nc" userLabel="Journey Editor Nav" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="hHn-7L-G2V"/>
+                    <tabBarItem key="tabBarItem" title="Organise" image="third" selectedImage="third" id="hHn-7L-G2V"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Sol-JM-RS4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -823,8 +823,9 @@
         <image name="flipcam.png" width="32" height="32"/>
         <image name="movie2.png" width="64" height="64"/>
         <image name="photo.png" width="64" height="64"/>
+        <image name="third" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Vi7-gp-4Yh"/>
+        <segue reference="YFg-j7-fIh"/>
     </inferredMetricsTieBreakers>
 </document>
