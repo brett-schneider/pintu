@@ -781,8 +781,9 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
         nc.topViewController.navigationItem.leftBarButtonItem = bbi;
         
         CurateTabViewC *curate = (CurateTabViewC*)[nc topViewController];
-        // map.coordsIn =
+        // so far only stills
         // still or film ?!?!?!
+        curate.inPicture = [UIImage imageWithData:self.imageData];
     }
 }
 

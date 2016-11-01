@@ -9,13 +9,17 @@
 import UIKit
 import MapKit
 import CoreData
+import Foundation
 
 var myStruct:[String] = ["Commentary", "Rating", "Album", "Map", "Preview"]
 
-class CurateTabViewC: UITableViewController, MKMapViewDelegate, UITextViewDelegate, CLLocationManagerDelegate, JourneySelectorDelegate {
+class CurateTabViewC: UITableViewController, MKMapViewDelegate, UITextViewDelegate, CLLocationManagerDelegate, JourneySelectorDelegate, DLStarRatingDelegate {
 
     @IBOutlet var inPicture: UIImage!
     @IBOutlet var inMetadata: NSDictionary!
+    @IBOutlet var inStation: PStationMO?
+    var station: PStationMO!
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var textView: UITextView!
@@ -25,34 +29,55 @@ class CurateTabViewC: UITableViewController, MKMapViewDelegate, UITextViewDelega
     var pin: MKPointAnnotation!
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     let pinTxt = "This Pin"
+
     let journeySelectorSegue = "journeySelectorSegue"
+    
+    private var rating: DLStarRatingControl!
+    private var price: DLStarRatingControl!
+    @IBOutlet weak var ratingView: UIView!
+    @IBOutlet weak var priceView: UIView!
+    @IBOutlet weak var stationName: UITextField!
+    
+    private var myDescriptionCellIndex = 1
+    private var myJourneyCellIndex = 4
+    private var myImageCellIndex = 6
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"keyboardWillShow:",name:UIKeyboardWillShowNotification, object:nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"keyboardWillHide:",name:UIKeyboardWillHideNotification, object:nil)
         
         mapView.delegate = self
         textView.delegate = self
+        
+        rating = setupRatingCell(ratingView.frame)
+        price = setupRatingCell(ratingView.frame)
+        ratingView.addSubview(rating)
+        priceView.addSubview(price)
+        
+        if (inStation != nil) {
+            print("got station: \(inStation)")
+            populateView(inStation!)
+        } else if (inPicture != nil) {
+            imageView.image = inPicture
+            var lat: Double = 0
+            var lon: Double = 0
+            if (inMetadata != nil) {
+                let gps = inMetadata["{GPS}"]
+                if (gps != nil) {
+                    lat = gps!["Latitude"] as! Double
+                    lon = gps!["Longitude"] as! Double
+                    print("exif: ", lat, " ", lon)
+                    let c = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+                    putPin(c)
+                    mapView.setCenterCoordinate(c, animated: true)
+                }
+            }
+        }
 
-        imageView.image = inPicture
-        let gps = inMetadata["{GPS}"]
-        var lat: Double = 0
-        var lon: Double = 0
-        if (gps != nil) {
-            lat = gps!["Latitude"] as! Double
-            lon = gps!["Longitude"] as! Double
-            print("exif: ", lat, " ", lon)
-            let c = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-            putPin(c)
-            mapView.setCenterCoordinate(c, animated: true)
-        } else {
+        if (pin == nil) {
+            // keine location data also muss user daten her
             print("getting user location")
             manager = CLLocationManager() //instantiate
             manager.delegate = self
@@ -79,8 +104,11 @@ class CurateTabViewC: UITableViewController, MKMapViewDelegate, UITextViewDelega
         }
         self.textViewDidChange(self.textView)
 
-//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//        let managedContext = appDelegate.managedObjectContext
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+        
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     override func didReceiveMemoryWarning() {
@@ -250,7 +278,7 @@ class CurateTabViewC: UITableViewController, MKMapViewDelegate, UITextViewDelega
     /* Table View Delegate */
     
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        if (indexPath.row == 3) {
+        if (indexPath.row == myJourneyCellIndex) {
             return indexPath
         } else {
             return nil
@@ -260,19 +288,17 @@ class CurateTabViewC: UITableViewController, MKMapViewDelegate, UITextViewDelega
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
         var rv: CGFloat = 200.0
-        if (indexPath.row == 0) {
+        if (indexPath.row == myDescriptionCellIndex) {
             // rv = textView.frame.size.height + 8.0 + 21.0 + 8.0
             rv = textViewHeight() + 0.0 + 21.0 + 8.0 + 0.0
         }
-        else if (indexPath.row == 5) {
-            let asp = (imageView.image?.size.height)! / (imageView.image?.size.width)!
-            rv = (screenSize.width-8.0-8.0) * asp + 8.0 + 8.0
-            // print("image size: ", imageView.image?.size)
-            // print("imageview frame: ", imageView.frame.size)
-            // print("contentview frame: ", imageView.superview?.frame.size)
-            // print("image aspect: ", asp)
-            // print("indexrow: ", indexPath.row, " height: ", rv)
-
+        else if (indexPath.row == myImageCellIndex) {
+            if (imageView.image == nil) {
+                rv = super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+            } else {
+                let asp = (imageView.image?.size.height)! / (imageView.image?.size.width)!
+                rv = (screenSize.width-8.0-8.0) * asp + 8.0 + 8.0
+            }
         }
         else {
             rv = super.tableView(tableView, heightForRowAtIndexPath: indexPath)
@@ -331,59 +357,113 @@ class CurateTabViewC: UITableViewController, MKMapViewDelegate, UITextViewDelega
                 }
             }
         }
-//        UINavigationController *nc = [segue destinationViewController];
-//        nc.topViewController.navigationItem.leftBarButtonItem = bbi;
-//        
-//        NSLog(@"sending %@", selected);
-//        CurateTabViewC *curate = (CurateTabViewC*)[nc topViewController];
-
-        
     }
     
     // MARK: - JourneySelectorDelegate
     @IBOutlet weak var journeyCell: UITableViewCell!
-    var journey: NSManagedObject!
+    var journey: PJourneyMO!
     
-    func selectedJourney(journey: NSManagedObject) {
+    func selectedJourney(journey: PJourneyMO) {
         journeyCell.detailTextLabel!.text = journey.valueForKey("name") as? String
         self.journey = journey
     }
     
-    // var station: PStationMO!
+    // MARK: - DLStarRatingDelegate
+    func newRating(control: DLStarRatingControl!, _ rating: Float) {
+        print("new rating: ", rating)
+    }
+    
+    // MARK: - Handling the Data
     
     @IBAction func saveStation(sender: UIBarButtonItem) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let moc = appDelegate.managedObjectContext
+        
+        var location: PLocationMO
+        
+        if (station == nil) {
+            let staEntity =  NSEntityDescription.entityForName("Station", inManagedObjectContext:moc)
+            station = PStationMO(entity: staEntity!, insertIntoManagedObjectContext:moc)
+            station.addedBy = "Anonymous"
+            station.addedByID = "c57a998f-e9f2-4d39-9b9e-54ed5e9d825c"
+            station.addedDate = NSDate()
+            location = NSEntityDescription.insertNewObjectForEntityForName("Location", inManagedObjectContext: moc) as! PLocationMO
+        } else {
+            location = station.location!
+        }
 
-        let staEntity =  NSEntityDescription.entityForName("Station", inManagedObjectContext:moc)
-        let station = PStationMO(entity: staEntity!, insertIntoManagedObjectContext:moc)
-
-        let locEntity =  NSEntityDescription.entityForName("Location", inManagedObjectContext:moc)
-        let location = NSManagedObject(entity: locEntity!, insertIntoManagedObjectContext:moc)
         print("setting coordinates...")
         location.setValue(pin.coordinate.latitude, forKey: "lat")
         location.setValue(pin.coordinate.longitude, forKey: "lon")
         print("done setting coordinates...")
-
-        station.text = textView.text
-        let p: Int16 = 1
-        let r: Int16 = 1
-        station.price = NSNumber(short: p)
-        station.rating = NSNumber(short: r)
-        station.addedBy = "Anonymous"
-        station.addedByID = "c57a998f-e9f2-4d39-9b9e-54ed5e9d825c"
-        station.addedDate = NSDate()
-        station.image = UIImageJPEGRepresentation(inPicture, 1.0)!
-        print("date: ", station.addedDate)
         station.location = location
         print("added location: ", location)
-        // station.journeys = NSSet(array: [journey])
-        station.mutableSetValueForKey("journeys").addObject(journey)
-        // print("done setting shit right: ", station)
+
+        station.name = stationName.text
+        station.text = textView.text
+        station.price = Int(price.rating)
+        station.rating = Int(rating.rating)
+        station.image = UIImageJPEGRepresentation(imageView.image!, 1.0)!
+        if (journey != nil) {
+            // station.mutableSetValueForKey("journeys").addObject(journey)
+            // journey.valueForKey("stations")?.addObject(station)
+            station.addJourney(journey)
+            journey.addStation(station)
+        }
         
         appDelegate.saveContext()
         
         print("saved: ", station)
+    }
+    
+    func populateView(station: PStationMO) {
+        stationName.text = station.name
+        let img = UIImage(data: station.image!)
+        imageView.image = img
+        print("imitch loaded: \(img)")
+        // imageView.image = UIImage(data: station.image!)
+        price.rating = station.price!.floatValue
+        rating.rating = station.rating!.floatValue
+        textView.text = station.text
+        let gotLoc = station.location
+        if (gotLoc != nil) {
+            // print("gotLoc: \(gotLoc), lat: \(gotLoc?.lat), lon: \(gotLoc?.lon)")
+            // print("doubles! lat: \(NSNumber(float: (gotLoc?.lat)!).doubleValue), lon: \(NSNumber(float: (gotLoc?.lon)!).doubleValue)")
+            let lat = NSNumber(float: (gotLoc?.lat)!).doubleValue
+            let lon = NSNumber(float: (gotLoc?.lon)!).doubleValue
+            putPin(CLLocationCoordinate2DMake(lat, lon))
+        }
+        // TODO: More than one Journey!
+        let gotJourney = station.journeys!.allObjects.first as? PJourneyMO
+        if (gotJourney != nil) {
+            selectedJourney(gotJourney!)
+        }
+        print("got journey: \(journey)")
+        self.station = station
+    }
+    
+    func setupRatingCell(frame: CGRect) -> DLStarRatingControl {
+        print("initialising 5-star rating yo...")
+
+        // Custom Number of Stars
+        let rater = DLStarRatingControl(frame:CGRectMake(0.0, 0.0, frame.width, frame.height))
+        rater.delegate = self
+        rater.backgroundColor = UIColor.clearColor()
+        rater.autoresizingMask = [.FlexibleLeftMargin, .FlexibleWidth, .FlexibleHeight, .FlexibleRightMargin, .FlexibleTopMargin, .FlexibleBottomMargin]
+        rater.rating = 0.0
+        
+        print ("rater aufgesetzt: ", rater)
+        
+        /*
+        // Custom Images
+        rater.setStar(UIImage(named: "n_star.png"), highlightedStar:UIImage(named: "n_star_highlighted.png"), atIndex:0)
+        rater.setStar(UIImage(named: "n_star.png"), highlightedStar:UIImage(named: "n_star_highlighted.png"), atIndex:1)
+        rater.setStar(UIImage(named: "n_star.png"), highlightedStar:UIImage(named: "n_star_highlighted.png"), atIndex:2)
+        rater.setStar(UIImage(named: "n_star.png"), highlightedStar:UIImage(named: "n_star_highlighted.png"), atIndex:3)
+        rater.setStar(UIImage(named: "n_star.png"), highlightedStar:UIImage(named: "n_star_highlighted.png"), atIndex:4)
+        */
+
+        return rater
     }
     
 }

@@ -1,8 +1,0 @@
-// replicate preview layer
-NSUInteger replicatorInstances = 2;
-CAReplicatorLayer *replicatorLayer = [CAReplicatorLayer layer];
-replicatorLayer.frame = self.previewView.bounds;
-replicatorLayer.instanceCount = 1;
-replicatorLayer.instanceTransform = CATransform3DMakeTranslation(0.0, self.view.bounds.size.height / replicatorInstances, 0.0);
-[replicatorLayer addSublayer:previewLayer];
-[self.previewView.layer addSublayer:replicatorLayer];

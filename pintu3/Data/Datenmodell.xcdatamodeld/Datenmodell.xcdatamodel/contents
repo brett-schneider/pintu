@@ -9,10 +9,11 @@
         <attribute name="lon" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <entity name="Station" representedClassName="PStationMO" syncable="YES">
-        <attribute name="addedBy" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="addedByID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="addedBy" attributeType="String" syncable="YES"/>
+        <attribute name="addedByID" attributeType="String" syncable="YES"/>
         <attribute name="addedDate" attributeType="Date" syncable="YES"/>
         <attribute name="image" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="price" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="rating" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
@@ -20,8 +21,8 @@
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Location" positionX="-54" positionY="-189" width="128" height="75"/>
-        <element name="Station" positionX="268" positionY="-162" width="128" height="180"/>
         <element name="Journey" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="Location" positionX="-54" positionY="-189" width="128" height="75"/>
+        <element name="Station" positionX="268" positionY="-162" width="128" height="195"/>
     </elements>
 </model>

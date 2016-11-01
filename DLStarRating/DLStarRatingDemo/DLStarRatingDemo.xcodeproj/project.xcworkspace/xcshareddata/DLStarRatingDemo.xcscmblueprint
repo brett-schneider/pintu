@@ -1,0 +1,32 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "655E6A7D636D2E59F4E9D90EF49A2F869F71FA3B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "a09e92b6-f4c2-4af6-8636-37ba149aae93" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "655E6A7D636D2E59F4E9D90EF49A2F869F71FA3B" : 0,
+    "a09e92b6-f4c2-4af6-8636-37ba149aae93" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E17CD771-EAE5-47F9-9EE4-BC436F2F30A3",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "655E6A7D636D2E59F4E9D90EF49A2F869F71FA3B" : "DLStarRating\/",
+    "a09e92b6-f4c2-4af6-8636-37ba149aae93" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "DLStarRatingDemo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "DLStarRatingDemo\/DLStarRatingDemo.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/dlinsin\/DLStarRating.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "655E6A7D636D2E59F4E9D90EF49A2F869F71FA3B"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/pkboo.me\/repos\/pintu",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "a09e92b6-f4c2-4af6-8636-37ba149aae93"
+    }
+  ]
+}
