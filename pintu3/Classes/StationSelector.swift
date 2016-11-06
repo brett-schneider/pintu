@@ -77,11 +77,13 @@ class StationSelector: UITableViewController, NSFetchedResultsControllerDelegate
         
         let station = stations[indexPath.row]
         if (station.valueForKey("name") as? String != nil) {
-            cell!.textLabel!.text = "name: \(station.valueForKey("name") as? String)"
+            // cell!.textLabel!.text = "name: \(station.valueForKey("name") as? String)"
+            cell!.textLabel!.text = station.valueForKey("name") as? String
+        } else if (station.valueForKey("text") as? String != nil) {
+            cell!.textLabel!.text = station.valueForKey("text") as? String
         } else {
-            cell!.textLabel!.text = "text: \(station.valueForKey("text") as? String)"
+            cell!.textLabel!.text = "#no name"
         }
-        
         return cell!
     }
 

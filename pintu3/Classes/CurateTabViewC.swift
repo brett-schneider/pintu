@@ -10,6 +10,8 @@ import UIKit
 import MapKit
 import CoreData
 import Foundation
+import AVKit
+import AVFoundation
 
 var myStruct:[String] = ["Commentary", "Rating", "Album", "Map", "Preview"]
 
@@ -18,11 +20,16 @@ class CurateTabViewC: UITableViewController, MKMapViewDelegate, UITextViewDelega
     @IBOutlet var inPicture: UIImage!
     @IBOutlet var inMetadata: NSDictionary!
     @IBOutlet var inStation: PStationMO?
+    @IBOutlet var inVideoURL: NSURL?
+    var videoData: NSData?
     var station: PStationMO!
     
+    @IBOutlet weak var previewContentView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var textView: UITextView!
+    var player: AVPlayer!
+    var playerLayer: AVPlayerLayer?
     var myPins: MKAnnotationView!
     var manager: CLLocationManager!
     let authLoc = CLLocationManager.authorizationStatus()
@@ -56,6 +63,8 @@ class CurateTabViewC: UITableViewController, MKMapViewDelegate, UITextViewDelega
         ratingView.addSubview(rating)
         priceView.addSubview(price)
         
+        print ("yo")
+        
         if (inStation != nil) {
             print("got station: \(inStation)")
             populateView(inStation!)
@@ -74,8 +83,17 @@ class CurateTabViewC: UITableViewController, MKMapViewDelegate, UITextViewDelega
                     mapView.setCenterCoordinate(c, animated: true)
                 }
             }
+        } else if (inVideoURL != nil) {
+            print("it's a video")
+            print("got video at: \(inVideoURL)")
+            do {
+                videoData = try NSData(contentsOfURL: self.inVideoURL!, options: NSDataReadingOptions.DataReadingMappedIfSafe)
+            } catch {
+                print ("unable to read video file \(error)")
+            }
+            self.initAVPlayer(inVideoURL!)
         }
-
+        
         if (pin == nil) {
             // keine location data also muss user daten her
             print("getting user location")
@@ -111,9 +129,29 @@ class CurateTabViewC: UITableViewController, MKMapViewDelegate, UITextViewDelega
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
+    func initAVPlayer(url: NSURL) {
+        player = AVPlayer(URL: url)
+        // TODO: Video Layer korrekt positionieren (bounds kommt mit 600er Breite zurück und so :-(
+        self.playerLayer = AVPlayerLayer(player: player)
+        self.playerLayer!.frame = CGRectMake(0.0, 0.0, self.tableView.bounds.width-16.0, self.imageView.bounds.height)
+        self.imageView.layer.addSublayer(self.playerLayer!)
+        player.play()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemDidReachEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: self.player.currentItem)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        print("viewWillTransitionToSize \(size)")
+        self.playerLayer?.frame = CGRectMake(0.0, 0.0, size.width-16.0, self.imageView.bounds.height)
+    }
+    
+    override func layoutSublayersOfLayer(layer: CALayer) {
+        print("layoutSublayersOfLayer \(layer)")
     }
     
     func putPin(coordinate: CLLocationCoordinate2D) {
@@ -134,10 +172,15 @@ class CurateTabViewC: UITableViewController, MKMapViewDelegate, UITextViewDelega
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("didupdatelocations")
         print("locations: ", locations)
-        putPin((locations.first?.coordinate)!)
-        mapView.setCenterCoordinate((locations.first?.coordinate)!, animated: true)
-        print("stop updating location")
-        manager.stopUpdatingLocation()
+        let newloc = locations.first
+        print("newloc accuracy \(newloc?.horizontalAccuracy) / \(newloc?.verticalAccuracy)")
+        // TODO: Timeout?
+        if (newloc?.horizontalAccuracy < 100.0 && newloc?.verticalAccuracy < 100.0) {
+            putPin((newloc?.coordinate)!)
+            mapView.setCenterCoordinate((newloc?.coordinate)!, animated: true)
+            print("stop updating location")
+            manager.stopUpdatingLocation()
+        }
     }
     
     internal func locationManager(manager: CLLocationManager,
@@ -248,6 +291,15 @@ class CurateTabViewC: UITableViewController, MKMapViewDelegate, UITextViewDelega
         self.tableView.contentInset = contentInsets
         self.tableView.scrollIndicatorInsets = contentInsets
         UIView.commitAnimations()
+    }
+    
+    /* AVPlayer */
+    
+    func playerItemDidReachEnd(notification: NSNotification) {
+        self.player.seekToTime(kCMTimeZero)
+        self.player.play()
+        // print("self.previewContentView.frame.width \(self.previewContentView.frame.width)")
+        // print("self.tableView.frame.width \(self.tableView.frame.width)")
     }
     
     /* Map View Delegate */
@@ -366,6 +418,9 @@ class CurateTabViewC: UITableViewController, MKMapViewDelegate, UITextViewDelega
     func selectedJourney(journey: PJourneyMO) {
         journeyCell.detailTextLabel!.text = journey.valueForKey("name") as? String
         self.journey = journey
+        self.tableView.beginUpdates()
+        self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: myJourneyCellIndex, inSection: 0)], withRowAnimation: UITableViewRowAnimation.None)
+        self.tableView.endUpdates()
     }
     
     // MARK: - DLStarRatingDelegate
@@ -403,7 +458,12 @@ class CurateTabViewC: UITableViewController, MKMapViewDelegate, UITextViewDelega
         station.text = textView.text
         station.price = Int(price.rating)
         station.rating = Int(rating.rating)
-        station.image = UIImageJPEGRepresentation(imageView.image!, 1.0)!
+        if (imageView.image != nil) {
+            station.image = UIImageJPEGRepresentation(imageView.image!, 1.0)!
+        } else if (inVideoURL != nil) {
+            print("saving video at \(self.inVideoURL)")
+            station.image = videoData
+        }
         if (journey != nil) {
             // station.mutableSetValueForKey("journeys").addObject(journey)
             // journey.valueForKey("stations")?.addObject(station)
@@ -418,9 +478,34 @@ class CurateTabViewC: UITableViewController, MKMapViewDelegate, UITextViewDelega
     
     func populateView(station: PStationMO) {
         stationName.text = station.name
-        let img = UIImage(data: station.image!)
-        imageView.image = img
-        print("imitch loaded: \(img)")
+        
+        var c = UInt64()
+        station.image!.getBytes(&c, length: 8)
+        switch (c<<40) {
+        case 0xffd8ff00_00000000:
+            print ("image/jpeg")
+            let img = UIImage(data: station.image!)
+            imageView.image = img
+            print("imitch loaded: \(img)")
+            break
+        case UInt64(0):
+            // 0x7079746614000000
+            if (c == 0x70797466_14000000) {
+                print ("movie")
+                videoData = station.image
+                let tmp = NSURL.fileURLWithPath(NSTemporaryDirectory(), isDirectory: true)
+                let fna = NSProcessInfo.processInfo().globallyUniqueString
+                let url = tmp.URLByAppendingPathComponent("\(fna).mov")
+                videoData?.writeToURL(url, atomically: true)
+                self.initAVPlayer(url)
+            }
+            break
+        default:
+            print("unknown mime type: ", String(c, radix:16))
+            print("unknown mime type: ", String(c<<40, radix:16))
+            break
+        }
+
         // imageView.image = UIImage(data: station.image!)
         price.rating = station.price!.floatValue
         rating.rating = station.rating!.floatValue
@@ -437,8 +522,8 @@ class CurateTabViewC: UITableViewController, MKMapViewDelegate, UITextViewDelega
         let gotJourney = station.journeys!.allObjects.first as? PJourneyMO
         if (gotJourney != nil) {
             selectedJourney(gotJourney!)
+            print("got journey: \(journey)")
         }
-        print("got journey: \(journey)")
         self.station = station
     }
     

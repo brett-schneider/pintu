@@ -14,6 +14,8 @@
 #import "AssetsDataIsInaccessibleViewController.h"
 #import "pintu3-Swift.h"
 
+#define kMinVisibleHeightImageView 20.0
+
 static void * CapturingStillImageContext = &CapturingStillImageContext;
 static void * SessionRunningContext = &SessionRunningContext;
 
@@ -37,6 +39,13 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 // Navigation and Preview
 @property (weak, nonatomic) IBOutlet UIImageView *bigImageView;
 @property (weak, nonatomic) IBOutlet UINavigationItem *topNav;
+@property (strong, nonatomic) IBOutlet AVPlayer* player;
+@property (weak, nonatomic) IBOutlet AVPlayerLayer* playerLayer;
+
+// Scrollview
+@property (strong, nonatomic) IBOutlet UIView *rootView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIView *contentView;
 
 @end
 
@@ -45,6 +54,7 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 static NSString *const reuseIdentifierPhotoCell = @"photoCell";
 CGImageRef selected;
 NSDictionary* metadata;
+NSURL* selectedurl;
 
 - (void)viewDidLoad
 {
@@ -57,6 +67,31 @@ NSDictionary* metadata;
     [super viewWillAppear:animated];
     NSLog(@"viewWillAppear:%d", animated);
     if (!self.assetsLibrary) [self initPhotoGrid];
+}
+
+-(void)calcAllSizes {
+    NSLog(@"sizing views");
+    // size it all
+    [self.scrollView setZoomScale:1.0];
+    CGFloat w = self.rootView.frame.size.width;
+    CGFloat h = self.rootView.frame.size.height;
+    [self.scrollView setFrame:CGRectMake(0.0, 0.0, w, h)];
+    self.scrollView.contentSize = CGSizeMake(w, w+h-kMinVisibleHeightImageView);
+    self.contentView.autoresizesSubviews = YES;
+    [self.contentView setFrame:CGRectMake(0.0, 0.0, w, w+h-kMinVisibleHeightImageView)];
+    [self.contentViewHeight setConstant:w+h-kMinVisibleHeightImageView];
+}
+
+-(void)adjustContentViewHeight {
+    NSLog(@"adjusting contentview height to match collectionView content height (%.1f) plus imageview height (%.1f)", self.collectionView.contentSize.height, self.bigImageView.frame.size.height);
+    CGFloat newheight = self.collectionView.contentSize.height+self.bigImageView.frame.size.height;
+    if (newheight < self.contentViewHeight.constant) {
+        if (newheight > self.rootView.frame.size.height) {
+            [self.contentViewHeight setConstant:self.collectionView.contentSize.height+self.bigImageView.frame.size.height];
+        } else {
+            [self.contentViewHeight setConstant:self.rootView.frame.size.height];
+        }
+    }
 }
 
 - (void)enumAssets:(ALAssetsGroup*)group {
@@ -77,12 +112,17 @@ NSDictionary* metadata;
                 if ([self.assets objectAtIndex:0])
                     [self showPreview:[self.assets objectAtIndex:0]];
             }
+            [self.collectionView layoutIfNeeded];
+            [self calcAllSizes];
+            [self adjustContentViewHeight];
         }
     };
     
-    ALAssetsFilter *onlyPhotosFilter = [ALAssetsFilter allPhotos];
-    NSLog(@"prepare assets from assetsgroup %@", group);
-    [group setAssetsFilter:onlyPhotosFilter];
+    // ALAssetsFilter *onlyPhotosFilter = [ALAssetsFilter allPhotos];
+    // NSLog(@"prepare assets from assetsgroup %@", group);
+    // [group setAssetsFilter:onlyPhotosFilter];
+    ALAssetsFilter *allAssetsFilter = [ALAssetsFilter allAssets];
+    [group setAssetsFilter:allAssetsFilter];
     [group enumerateAssetsUsingBlock:assetsEnumerationBlock];
 }
 
@@ -133,8 +173,10 @@ NSDictionary* metadata;
     // emumerate through our groups and only add groups that contain photos
     ALAssetsLibraryGroupsEnumerationResultsBlock listGroupBlock = ^(ALAssetsGroup *group, BOOL *stop) {
         
-        ALAssetsFilter *onlyPhotosFilter = [ALAssetsFilter allPhotos];
-        [group setAssetsFilter:onlyPhotosFilter];
+        // ALAssetsFilter *onlyPhotosFilter = [ALAssetsFilter allPhotos];
+        // [group setAssetsFilter:onlyPhotosFilter];
+        ALAssetsFilter *allAssetsFilter = [ALAssetsFilter allAssets];
+        [group setAssetsFilter:allAssetsFilter];
         if (group) {
             // NSLog(@"adding alassetsgroup %@", group);
             [self.groups addObject:group];
@@ -150,7 +192,8 @@ NSDictionary* metadata;
     };
 
     // enumerate only photos
-    NSUInteger groupTypes = ALAssetsGroupAlbum | ALAssetsGroupEvent | ALAssetsGroupFaces | ALAssetsGroupSavedPhotos;
+    // NSUInteger groupTypes = ALAssetsGroupAlbum | ALAssetsGroupEvent | ALAssetsGroupFaces | ALAssetsGroupSavedPhotos;
+    NSUInteger groupTypes = ALAssetsGroupAll;
     [self.assetsLibrary enumerateGroupsWithTypes:groupTypes usingBlock:listGroupBlock failureBlock:failureBlock];
     NSLog(@"done initialising");
 }
@@ -158,6 +201,11 @@ NSDictionary* metadata;
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     NSLog(@"viewDidAppear:%d", animated);
+//    NSLog(@"rootviewsize: %.1fx%.1f", self.rootView.frame.size.width, self.rootView.frame.size.height);
+//    NSLog(@"scrollviewcontentsize: %.1fx%.1f", self.scrollView.contentSize.width, self.scrollView.contentSize.height);
+//    NSLog(@"contentview: %.1fx%.1f", self.contentView.frame.size.width, self.contentView.frame.size.height);
+//    NSLog(@"bigimageview size: %.1fx%.1f", self.bigImageView.frame.size.width, self.bigImageView.frame.size.height);
+//    NSLog(@"conllectionview contentsize: %.1fx%.1f", self.collectionView.contentSize.width, self.collectionView.contentSize.height);
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -167,14 +215,43 @@ NSDictionary* metadata;
 }
 
 - (void)showPreview:(ALAsset*)asset {
-    NSLog(@"show preview: %@", asset);
+    NSLog(@"show preview: %@ (asset type: %@", asset, [asset valueForProperty:ALAssetPropertyType]);
     ALAssetRepresentation *assetRep = [asset defaultRepresentation];
-    // CGImageRef preImg = [assetRep fullScreenImage];
-    selected = [assetRep fullScreenImage];
-    UIImage *preUImg = [UIImage imageWithCGImage:selected];
-    [self.bigImageView setImage:preUImg];
     
     metadata = [assetRep metadata];
+    if (_player) {
+        NSLog(@"remove playerlayer from suprview");
+        [_playerLayer removeFromSuperlayer];
+    }
+    
+    if ([[asset valueForProperty:ALAssetPropertyType] isEqualToString:ALAssetTypePhoto]) {
+        selectedurl = nil;
+        // CGImageRef preImg = [assetRep fullScreenImage];
+        selected = [assetRep fullScreenImage];
+        UIImage *preUImg = [UIImage imageWithCGImage:selected];
+        [self.bigImageView setImage:preUImg];
+        
+    } else if ([[asset valueForProperty:ALAssetPropertyType] isEqualToString:ALAssetTypeVideo]) {
+        NSLog(@"bideo selected, setting selected img to nil, preparing player");
+        selected = nil;
+        [self.bigImageView setImage:nil];
+        selectedurl = [assetRep url];
+        _player = [[AVPlayer alloc] initWithURL:selectedurl];
+        _playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
+        [_playerLayer setFrame:CGRectMake(0.0, 0.0, _contentView.frame.size.width, _bigImageView.frame.size.height)];
+        [[_bigImageView layer] addSublayer:_playerLayer];
+        [_player play];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemDidReachEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:_player.currentItem];
+    } else {
+        NSLog(@"no entiendo ALAssetPropertyType %@", [asset valueForProperty:ALAssetPropertyType]);
+    }
+}
+
+#pragma mark - AVPlayer
+-(void) playerItemDidReachEnd:(NSNotification*) notification {
+    [_player seekToTime:kCMTimeZero];
+    [_player play];
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -234,13 +311,19 @@ NSDictionary* metadata;
         UINavigationController *nc = [segue destinationViewController];
         UIBarButtonItem *bbi = [[UIBarButtonItem alloc] initWithTitle:@"← Back" style:UIBarButtonItemStyleDone target:self action:@selector(dismiss)];
         nc.topViewController.navigationItem.leftBarButtonItem = bbi;
-
-        NSLog(@"sending %@", selected);
         CurateTabViewC *curate = (CurateTabViewC*)[nc topViewController];
-        curate.inPicture = [UIImage imageWithCGImage:selected];
-        curate.inMetadata = metadata;
-        // curate.imageView.image = [UIImage imageWithCGImage:selected];
-        // NSLog(@"sent %@", fil.imageIn);
+        
+        if (selected) {
+            NSLog(@"sending %@", selected);
+            curate.inPicture = [UIImage imageWithCGImage:selected];
+            curate.inMetadata = metadata;
+            // curate.imageView.image = [UIImage imageWithCGImage:selected];
+            // NSLog(@"sent %@", fil.imageIn);
+        } else if (selectedurl) {
+            NSLog(@"sending %@", selectedurl);
+            curate.inVideoURL = selectedurl;
+            curate.inMetadata = metadata;
+        }
     }
 }
 

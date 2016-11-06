@@ -781,9 +781,15 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
         nc.topViewController.navigationItem.leftBarButtonItem = bbi;
         
         CurateTabViewC *curate = (CurateTabViewC*)[nc topViewController];
-        // so far only stills
-        // still or film ?!?!?!
-        curate.inPicture = [UIImage imageWithData:self.imageData];
+        NSLog(@"prep segue");
+        if (self.imageData) {
+            NSLog(@"with image");
+            curate.inPicture = [UIImage imageWithData:self.imageData];
+        } else if (self.filmURL) {
+            NSLog(@"with bideo at %@", self.filmURL);
+            curate.inVideoURL = self.filmURL;
+            NSLog(@"go go go ");
+        }
     }
 }
 

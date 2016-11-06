@@ -68,7 +68,7 @@ class JourneySelector: UITableViewController, NSFetchedResultsControllerDelegate
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("journeyCell")
         if (indexPath.section == 0) {
-            cell!.textLabel!.text = "# unspecified"
+            cell!.textLabel!.text = "#unspecified"
         } else {
             let journey = journeys[indexPath.row]
             cell!.textLabel!.text = journey.valueForKey("name") as? String

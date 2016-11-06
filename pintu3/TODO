@@ -1,0 +1,55 @@
+AcquireCam / Camera Scene
+- Better Layout. Really
+
+AcquireLib / Library Scene
+- Scrolling: start scrolling scrollview once finger slides from collectionview into imageview
+
+Sync with Server
+
+Better icons
+
+Recombine Library and Camera. maybe. library is slow as is
+
+---------------------------- done ----------------------------
+
+AcquireLib / Library Scene
+- Scrolling: Clip CollectionView and thus contentView such that there is no big empty space in collectionView
+
+Videos, that will loop in preview Mode. Yeah.
+
+GPS that will refresh until the accuracy goes up to less than 100 metres
+
+TableView Layout etwas rechts
+journeycell updatet sich nicht nach erster Auswah;
+
+The Colours
+
+---------------------------- snip ----------------------------
+
+let playerView = UIView(frame: previewContentView.bounds)
+playerLayer.frame = previewContentView.bounds
+previewContentView.addSubview(playerView)
+
+if #available(iOS 8.0, *) {
+print("leading")
+let leadingConstraint = NSLayoutConstraint(item:previewContentView, attribute:NSLayoutAttribute.LeadingMargin, relatedBy:NSLayoutRelation.Equal, toItem:playerView, attribute:NSLayoutAttribute.Leading, multiplier:1.0, constant:0.0)
+print("trailing")
+let trailingConstraint = NSLayoutConstraint(item:previewContentView, attribute:NSLayoutAttribute.TrailingMargin, relatedBy:NSLayoutRelation.Equal, toItem:playerView, attribute:NSLayoutAttribute.Trailing, multiplier:1.0, constant:0.0);
+print("top")
+let topConstraint = NSLayoutConstraint(item:previewContentView, attribute:NSLayoutAttribute.TopMargin, relatedBy:NSLayoutRelation.Equal, toItem:playerView, attribute:NSLayoutAttribute.Top, multiplier:1.0, constant:0.0);
+print("bottom")
+let bottomConstraint = NSLayoutConstraint(item:previewContentView, attribute:NSLayoutAttribute.BottomMargin, relatedBy:NSLayoutRelation.Equal, toItem:playerView, attribute:NSLayoutAttribute.Bottom, multiplier:1.0, constant:0.0);
+previewContentView.addConstraint(leadingConstraint);
+previewContentView.addConstraint(trailingConstraint);
+previewContentView.addConstraint(topConstraint);
+previewContentView.addConstraint(bottomConstraint);
+} else {
+let leadingConstraint = NSLayoutConstraint(item:previewContentView, attribute:NSLayoutAttribute.Leading, relatedBy:NSLayoutRelation.Equal, toItem:player, attribute:NSLayoutAttribute.Leading, multiplier:1.0, constant:0.0)
+let trailingConstraint = NSLayoutConstraint(item:previewContentView, attribute:NSLayoutAttribute.Trailing, relatedBy:NSLayoutRelation.Equal, toItem:player, attribute:NSLayoutAttribute.Trailing, multiplier:1.0, constant:0.0);
+let topConstraint = NSLayoutConstraint(item:previewContentView, attribute:NSLayoutAttribute.Top, relatedBy:NSLayoutRelation.Equal, toItem:player, attribute:NSLayoutAttribute.Top, multiplier:1.0, constant:0.0);
+let bottomConstraint = NSLayoutConstraint(item:previewContentView, attribute:NSLayoutAttribute.Bottom, relatedBy:NSLayoutRelation.Equal, toItem:player, attribute:NSLayoutAttribute.Bottom, multiplier:1.0, constant:0.0);
+previewContentView.addConstraint(leadingConstraint);
+previewContentView.addConstraint(trailingConstraint);
+previewContentView.addConstraint(topConstraint);
+previewContentView.addConstraint(bottomConstraint);
+};

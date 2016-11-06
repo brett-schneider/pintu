@@ -11,5 +11,6 @@
 @interface AcquireLib : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIPopoverPresentationControllerDelegate>
 
 @property (nonatomic, retain) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewHeight;
 
 @end
