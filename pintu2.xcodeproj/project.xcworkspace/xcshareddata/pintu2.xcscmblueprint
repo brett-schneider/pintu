@@ -1,0 +1,35 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "a09e92b6-f4c2-4af6-8636-37ba149aae93",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "df0b0db4-edff-4a8f-8d95-e9a06ed43110++505" : {
+
+    },
+    "a09e92b6-f4c2-4af6-8636-37ba149aae93" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "df0b0db4-edff-4a8f-8d95-e9a06ed43110++505" : 0,
+    "a09e92b6-f4c2-4af6-8636-37ba149aae93" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "C9777555-9752-4F71-B6DA-8CDA5CECEB0F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "df0b0db4-edff-4a8f-8d95-e9a06ed43110++505" : "filtr\/",
+    "a09e92b6-f4c2-4af6-8636-37ba149aae93" : "pintu\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "pintu2",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "pintu2.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/pkboo.me\/repos\/pintu",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "a09e92b6-f4c2-4af6-8636-37ba149aae93"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/pkboo.me\/repos\/filtr",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "df0b0db4-edff-4a8f-8d95-e9a06ed43110++505"
+    }
+  ]
+}
